@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vue.js Addition Example</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+</head>
+<body>
+  <div id="app">
+    <h1>Add</h1>
+    <input type="text" v-model.number="number1">
+    <input type="text" v-model.number="number2">
+    <input type="text" v-model.number="number3">
+
+    <button @click="addNumbers">Add</button>
+    
+    <p>The sum is: {{ result }}</p>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        number1: 0,
+        number2: 0,
+        number3: 0,
+        result: 0
+      },
+      methods: {
+        addNumbers() {
+          this.result = this.number1 + this.number2;
+        }
+    }
+    });
+  </script>
+</body>
+</html>
