@@ -1,41 +1,86 @@
 import React, { Component } from 'react';
 
-class R073_ReactRef extends Component {
+class SumComponent extends Component {
   constructor(props) {
     super(props);
-    this.InputRef = React.createRef();
+    this.state = {
+      number1: '',
+      number2: '',
+      sum: null
+    };
   }
 
-  RefFocus = (e) => {
-    var a= this.InputRef1.current.val();
-    var b= this.InputRef2.current.val();
-    var c = a+b;
-    console.log(a);
-  }
+  handleInputChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+  };
 
-  JavascriptFocus() {
-    document.getElementById('id').focus();
-  }
+  /*
+  calculateSum = () => {
+    const { number1, number2 } = this.state;
+    const sum = parseFloat(number1) + parseFloat(number2);
+    this.setState({ sum });
+  };
+  */
+
+  /*
+  BigNo = () => {
+    const { number1, number2 } = this.state;
+    var sum = 0;
+    var num1 = parseInt(number1);
+    var num2 = parseInt(number2);
+    if (num1 > num2){
+      sum = num1;
+    }
+    else sum = num2;
+    this.setState({ sum });
+  };
+  */
+
+  OddNo = () => {
+    const { number1, number2 } = this.state;
+    var sum = "";
+    var num1 = parseInt(number1);
+    var num2 = parseInt(number2);
+    if (num1 % 2 == 0){
+      sum = "짝수";
+    }
+    else sum = "홀수";
+    this.setState({ sum });
+  };
+
 
   render() {
+    const { number1, number2, sum } = this.state;
+
     return (
-      <>
-        <input id="id1" type="text" ref={this.InputRef1} />
-        <input id="id2" type="text" ref={this.InputRef2} />
-        <input type="button" value="Ref Focus" onClick={this.RefFocus}/>
-        <input type="button" value="Javascript Focus" onClick={this.JavascriptFocus}/>
-      </>  
-    )
+      <div>
+        <h1>Sum Calculator</h1>
+        <div>
+          <input
+            name="number1"
+            value={number1}
+            onChange={this.handleInputChange}
+          />
+        </div>
+        <div>
+          <input
+            name="number2"
+            value={number2}
+            onChange={this.handleInputChange}
+          />
+        </div>
+        <button onClick={this.OddNo}>Calculate Sum</button>
+        {sum !== null && (
+          <div>
+            <h2>Sum: {sum}</h2>
+          </div>
+        )}
+      </div>
+    );
   }
 }
 
-function App() {
-  return (
-    <div>
-      <h1>Start React 200!</h1>
-      <R073_ReactRef/>
-    </div>
-  );
-}
+export default SumComponent;
 
-export default App;
+
